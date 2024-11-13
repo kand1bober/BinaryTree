@@ -236,7 +236,7 @@ enum TreeErrors ExtractNode( struct Node_t* node )
             {
                 tmp_parent->left = nullptr;
             }
-            else if(  tmp_parent->right == node )
+            else if( tmp_parent->right == node )
             {
                 tmp_parent->right = nullptr;
             }
@@ -251,14 +251,14 @@ enum TreeErrors ExtractNode( struct Node_t* node )
 
             if( node->parent->left == node )
             {
-                node->parent->left = node->left;
+                node->parent->left = nullptr;
             }
-            else if(  node->parent->parent->right == node )
+            else if(  node->parent->right == node )
             {
-                node->parent->right = node->left;
+                node->parent->right = nullptr;
             }
 
-            free( node );
+            FreeTree( node );
 
             return GOOD_EXTRACT;
         }
@@ -268,14 +268,14 @@ enum TreeErrors ExtractNode( struct Node_t* node )
 
             if( node->parent->left == node )
             {
-                node->parent->left = node->right;
+                node->parent->left = nullptr;
             }
-            else if(  node->parent->parent->right == node )
+            else if(  node->parent->right == node )
             {
-                node->parent->right = node->right;
+                node->parent->right = nullptr;
             }
 
-            free( node );
+            FreeTree( node );
 
             return GOOD_EXTRACT;    
         }

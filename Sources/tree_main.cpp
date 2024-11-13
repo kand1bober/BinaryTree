@@ -17,45 +17,45 @@ int main()
 
     MakeTreeData( &tree_input, &my_tree );
 
-/*        
+       
     //----------- PREKOLES ----------
     printf(RED "--------- Init -----------\n" DELETE_COLOR);
     struct Node_t* find_node = nullptr; //
     struct Node_t* tmp_node = nullptr;  //shold be used everytime you need to create a new node, otherwise it will be seg-fault
-    CreateNode( 14.88, &tmp_node );
-    InsertLeave( my_tree.root, LEFT, tmp_node );
-    //---------------------------------
-    printf(RED "--------- 1 -----------\n" DELETE_COLOR);
-    CreateNode( 7.77, &tmp_node );
-    Find( &my_tree, 14.88, &find_node );
-    printf("find_node: %p\n", find_node);
-    InsertLeave( find_node, RIGHT, tmp_node );
-    //--------------------------------
-    printf(RED "--------- 2 -----------\n" DELETE_COLOR);
-    CreateNode( 6.66, &tmp_node );
-    Find( &my_tree, 14.88, &find_node );
-    printf("find_node: %p\n", find_node);
-    InsertLeave( find_node, RIGHT, tmp_node );
-    //-------------------------------
-    printf(RED "--------- 3 -----------\n" DELETE_COLOR); //Предупреждение о вызове не той функции
-    Find( &my_tree, 14.88, &find_node );
-    CreateNode( 17.25, &tmp_node);
-    NodeInsert( find_node->right, nullptr, tmp_node );
-    printf("find_node: %p\n", find_node);
-    //-------------------------------
-    printf(RED "--------- 4 -----------\n" DELETE_COLOR);
-    CreateNode( 20.24, &tmp_node);
-    Find( &my_tree, 17.25, &find_node );
-    InsertLeave( find_node, RIGHT, tmp_node);
-    printf("find_node: %p\n", find_node);
-    //-------------------------------
-    printf(RED "--------- 5 -----------\n" DELETE_COLOR);
-    CreateNode( 17.17, &tmp_node);
-    Find( &my_tree, 20.24, &find_node );
-    InsertLeave( find_node, RIGHT, tmp_node);
-    printf("find_node: %p\n", find_node);
-    //-------------------------------
-
+  
+    // CreateNode( 14.88, &tmp_node );
+    // InsertLeave( my_tree.root, LEFT, tmp_node );
+    // //---------------------------------
+    // printf(RED "--------- 1 -----------\n" DELETE_COLOR);
+    // CreateNode( 7.77, &tmp_node );
+    // Find( &my_tree, 14.88, &find_node );
+    // printf("find_node: %p\n", find_node);
+    // InsertLeave( find_node, RIGHT, tmp_node );
+    // //--------------------------------
+    // printf(RED "--------- 2 -----------\n" DELETE_COLOR);
+    // CreateNode( 6.66, &tmp_node );
+    // Find( &my_tree, 14.88, &find_node );
+    // printf("find_node: %p\n", find_node);
+    // InsertLeave( find_node, RIGHT, tmp_node );
+    // //-------------------------------
+    // printf(RED "--------- 3 -----------\n" DELETE_COLOR); //Предупреждение о вызове не той функции
+    // Find( &my_tree, 14.88, &find_node );
+    // CreateNode( 17.25, &tmp_node);
+    // NodeInsert( find_node->right, nullptr, tmp_node );
+    // printf("find_node: %p\n", find_node);
+    // //-------------------------------
+    // printf(RED "--------- 4 -----------\n" DELETE_COLOR);
+    // CreateNode( 20.24, &tmp_node);
+    // Find( &my_tree, 17.25, &find_node );
+    // InsertLeave( find_node, RIGHT, tmp_node);
+    // printf("find_node: %p\n", find_node);
+    // //-------------------------------
+    // printf(RED "--------- 5 -----------\n" DELETE_COLOR);
+    // CreateNode( 17.17, &tmp_node);
+    // Find( &my_tree, 20.24, &find_node );
+    // InsertLeave( find_node, RIGHT, tmp_node);
+    // printf("find_node: %p\n", find_node);
+    // //-------------------------------
 
 
     // //-------------------------------
@@ -64,7 +64,20 @@ int main()
     // printf("find_node: %p\n", find_node);
     // ExtractNode( find_node );
     // //-------------------------------
-*/
+
+    //-------------------------------
+    printf(RED "--------- 6 -----------\n" DELETE_COLOR);
+    Find( &my_tree, 20.24, &find_node );
+    printf("find_node: %p\n", find_node);
+    ExtractNode( find_node );
+    //-------------------------------
+
+
+
+
+
+
+
 
     //-------------SAVING TREE DATA--------------
     TreeData( &my_tree, &tree_output );

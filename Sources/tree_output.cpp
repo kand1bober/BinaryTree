@@ -74,7 +74,7 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
     fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } | { <parent%p> parent: %p } | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ]; ",
                             node, fillcolor, default_pointer_color, node, node, node, node->parent, node, node->data, node, left, node, right );
 
-    if( node->left )
+    if( (node->left) != nullptr )
     {
         fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         left, fillcolor, default_pointer_color, left, left, left, left->parent, left, left->data, left, left->left, left, left->right);
@@ -83,7 +83,7 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
         WriteEdge( file, node->left );
     }
 
-    if( node->right )
+    if( (node->right) != nullptr )
     {
         fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         right, fillcolor, default_pointer_color, right, right, right, right->parent, right, right->data, right, right->left, right, right->right );
@@ -132,7 +132,7 @@ enum TreeErrors StartWritingData( struct File_text* file )
 
 enum TreeErrors FinishWritingData( struct File_text* file )
 {   
-    fprintf(file->stream, "\n\nHUUUUUUUUUUUUUUUUY\n\n");
+    fprintf(file->stream, "\n\nHUUUUUUUUUUUUUUUUY( Checking if files are changing )\n\n");
     fclose( file->stream );
 
     if( !file )

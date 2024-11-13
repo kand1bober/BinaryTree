@@ -132,6 +132,7 @@ enum TreeErrors StartWritingData( struct File_text* file )
 
 enum TreeErrors FinishWritingData( struct File_text* file )
 {   
+    fprintf(file->stream, "\n\nHUUUUUUUUUUUUUUUUY\n\n");
     fclose( file->stream );
 
     if( !file )

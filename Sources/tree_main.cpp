@@ -68,7 +68,7 @@ int main()
 
     //-------------SAVING TREE DATA--------------
     TreeData( &my_tree, &tree_output );
-    // InputFileNameChange();/
+    InputFileNameChange();
     //-------------------------------------------
 
     //-----------------PRINTING------------------

@@ -7,8 +7,8 @@ const char output_image_name[40] = "TreeGraph.svg";
 const char output_graph_name[40] = "TreeGraph.dot";
 const char output_html_name[40] =  "TreeGraph.html";
 
-const char tree_data_name_old[40] = "TreeDataOld.txt";
-const char tree_data_name_new[40] = "TreeDataNew.txt";
+const char tree_data_name_old[40] = "OldData.txt";
+const char tree_data_name_new[40] = "NewData.txt";
 
 const size_t START_OUTPUT_FILE_SIZE =  10;
 const char default_pointer_color[20] = "#FFE9C7";

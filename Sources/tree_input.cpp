@@ -113,25 +113,26 @@ void NodeFromData( struct Node_t* node, char** ptr_progres )
 
 
 
-
 void InputFileNameChange( void )
 {
-    printf(RED "HUUUUUUUUUUUUUUUUUUUUUUUUUUUUY\n" DELETE_COLOR);
-    char tmp_name[] = "tmp.txt";
+    printf(YELLOW "====== Start Changing Names ======\n" DELETE_COLOR);
+    char tmp_name[20] = "tmp.txt";
 
-    char command_1[300] = "mv";
-    sprintf(command_1, " %s%s", tree_data_name_old, tmp_name);
+    char command_1[300] = "";
+    sprintf(command_1, "mv %s %s", tree_data_name_old, tmp_name);
     system( command_1 );
     ON_DEBUG( printf(YELLOW "%s\n" DELETE_COLOR, command_1); )
 
-    char command_2[300] = "mv";
+    char command_2[300] = "";
+    sprintf( command_2, "mv %s %s", tree_data_name_new, tree_data_name_old);
     system( command_2 );
-    sprintf( command_2, "mv %s%s", tree_data_name_new, tree_data_name_old);
     ON_DEBUG( printf(YELLOW "%s\n" DELETE_COLOR, command_2); )
 
-    char command_3[300] = "mv";
+    char command_3[300] = "";
+    sprintf( command_3, "mv %s %s", tmp_name, tree_data_name_new);
     system( command_3 );
-    sprintf( command_3, "mv %s%s", tmp_name, tree_data_name_new);
     ON_DEBUG( printf(YELLOW "%s\n" DELETE_COLOR, command_3); )
+
+    printf(YELLOW "====== Finished Changing Names ======\n" DELETE_COLOR);
 }
 

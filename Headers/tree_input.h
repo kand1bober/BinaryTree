@@ -13,8 +13,20 @@ struct File_input
     int lines_amount;
 };
 
+struct Parser
+{
+    char* string;                   // целевая строка
+    char* track_1= nullptr;        // внешние скобки
+    char* track_2 = nullptr;      // внутренние кавычки 
+    const char* delim_1;         // просто пропускаем 
+    const char* delim_2;        // каллочим, если не "nuull" или придумать другой пойзон
+    // const char* delim_3;       // закрывающая скобка
+    char* result_1 = nullptr; // строка с кавычками 
+    char* result_2 = nullptr;// целевая строка
+};
+
 enum TreeErrors MakeTreeData( struct File_input* file, struct Tree* tree );
-void NodeFromData( struct Node_t* node, char** ptr_progres );
+void NodeFromData( struct Tree* tree, struct Node_t* node, struct Parser* utility );
 void InputFileNameChange( void );
 
 #endif

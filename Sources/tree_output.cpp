@@ -61,22 +61,21 @@ enum TreeErrors Print( struct File_text* file, struct Tree* tree )
 {   
     WriteEdge( file, tree->root );
 
-    // fprintf(file->stream, "node_%d -> node_d [color = \"%s\", arrowsize = 1] ;\n", ,default_pointer_color);
-        
     return GOOD_PRINT;
 }
+
 
 void WriteEdge( struct File_text* file, struct Node_t* node )
 {
     struct Node_t* left = node->left;
     struct Node_t* right = node->right;
 
-    fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } | { <parent%p> parent: %p } | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ]; ",
+    fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } | { <parent%p> parent: %p } | { <data%p> data: %s} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ]; ",
                             node, fillcolor, default_pointer_color, node, node, node, node->parent, node, node->data, node, left, node, right );
 
     if( (node->left) != nullptr )
     {
-        fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
+        fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %s} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         left, fillcolor, default_pointer_color, left, left, left, left->parent, left, left->data, left, left->left, left, left->right);
 
         fprintf(file->stream, "node_%p -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, left, pointer_left_color );    
@@ -85,7 +84,7 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
 
     if( (node->right) != nullptr )
     {
-        fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %0.2lf} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
+        fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %s} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         right, fillcolor, default_pointer_color, right, right, right, right->parent, right, right->data, right, right->left, right, right->right );
 
         fprintf(file->stream, "node_%p -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, right, pointer_right_color );    
@@ -97,8 +96,10 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
 //------------------------------------------------------------
 
 
-//-------------------- TREE DATA -----------------------------
 
+
+
+//-------------------- TREE DATA -----------------------------
 enum TreeErrors TreeData( struct Tree* tree, struct File_text* file )
 {
     StartWritingData( file );
@@ -123,16 +124,13 @@ enum TreeErrors StartWritingData( struct File_text* file )
 {
     char data_path[256] = {};
     GetFilePath( data_path, tree_data_name_new );
-    file->stream = fopen( data_path, "w+" );
-
-    // fprintf(file->stream, "TreeData:\n");    
+    file->stream = fopen( data_path, "w+" ); 
 
     return GOOD_DATA;
 }
 
 enum TreeErrors FinishWritingData( struct File_text* file )
 {   
-    fprintf(file->stream, "\n\nHUUUUUUUUUUUUUUUUY( Checking if files are changing )\n\n");
     fclose( file->stream );
 
     if( !file )
@@ -150,6 +148,7 @@ enum TreeErrors WriteTreeData( struct Tree* tree, struct File_text* file )
 {
     int count_offset = 0;
 
+    fprintf(file->stream, "\n");
     CollectTreeData( tree->root, file, count_offset );
 
     return GOOD_DATA;
@@ -164,7 +163,7 @@ enum TreeErrors CollectTreeData( struct Node_t* node, struct File_text* file, in
     MakeOffset( file, count_offset );
     fprintf( file->stream, "{\n");
     MakeOffset( file, count_offset );
-    fprintf( file->stream, "\"%lf\"\n", node->data);
+    fprintf( file->stream, "\"%s\"\n", node->data);
 
     if( left != nullptr )
     {
@@ -175,7 +174,7 @@ enum TreeErrors CollectTreeData( struct Node_t* node, struct File_text* file, in
         MakeOffset( file, count_offset + 1);
         fprintf( file->stream, "{\n");
         MakeOffset( file, count_offset + 1);
-        fprintf( file->stream, "\"null\"\n");
+        fprintf( file->stream, "\"nuull\"\n");
         MakeOffset( file, count_offset + 1);
         fprintf( file->stream, "}\n");
     }
@@ -189,7 +188,7 @@ enum TreeErrors CollectTreeData( struct Node_t* node, struct File_text* file, in
         MakeOffset( file, count_offset + 1);
         fprintf( file->stream, "{\n");
         MakeOffset( file, count_offset + 1);
-        fprintf( file->stream, "\"null\"\n");
+        fprintf( file->stream, "\"nuull\"\n");
         MakeOffset( file, count_offset + 1);
         fprintf( file->stream, "}\n");
     }

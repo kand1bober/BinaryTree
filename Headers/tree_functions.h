@@ -111,7 +111,7 @@ enum TreeErrors FindString( struct Tree* tree, TreeElem to_find, int* string_pos
 enum TreeErrors Find( struct Tree* tree, TreeElem to_find, struct Node_t** answer);
 enum TreeErrors NodeDelete( struct Tree* tree, struct Node_t* node );
 enum TreeErrors InsertNode( struct Node_t* left, struct Node_t* right, struct Node_t* node );
-enum TreeErrors InsertLeave( struct Node_t* parent, enum Direction branch, struct Node_t* to_connect );
+enum TreeErrors InsertLeave( struct Tree* tree, struct Node_t* parent, enum Direction branch, struct Node_t* to_connect );
 
 //----------------------------RECURSIVE FUNCTIONS----------------------------------------
 void FindNode( struct Node_t* node_search, TreeElem to_find, struct Node_t** answer );
@@ -121,5 +121,6 @@ enum TreeErrors FindString( struct Tree* tree, TreeElem to_find, int* string_pos
 enum TreeErrors FindSameString( struct Tree* tree, TreeElem to_find, int* string_position );
 enum TreeErrors FindEmptyString( struct Tree* tree, int* string_position );
 enum TreeErrors DeleteString( struct Tree* tree, TreeElem string );
+void StringDump( struct Tree* tree );
 
 #endif

@@ -96,9 +96,6 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
 //------------------------------------------------------------
 
 
-
-
-
 //-------------------- TREE DATA -----------------------------
 enum TreeErrors TreeData( struct Tree* tree, struct File_text* file )
 {
@@ -128,6 +125,7 @@ enum TreeErrors StartWritingData( struct File_text* file )
 
     return GOOD_DATA;
 }
+
 
 enum TreeErrors FinishWritingData( struct File_text* file )
 {   

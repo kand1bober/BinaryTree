@@ -11,11 +11,8 @@ int CheckSize_t( size_t number )
 
 char* GetFilePath( char* filepath, const char* filename )
 {
-    // printf("getting filepath\n");
     const char* directory = "/home/vyacheslav/BinaryTree/";
     sprintf(filepath, "%s%s", directory, filename);
-
-    // ON_DEBUG( printf(SINIY "working dir: %s\n" DELETE_COLOR, directory); )
 
     return filepath;
 }

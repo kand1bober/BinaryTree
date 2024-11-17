@@ -128,22 +128,22 @@ enum TreeErrors FindString( struct Tree* tree, TreeElem to_find, int* string_pos
 {
     *string_position = 0;
 
-    StringDump( tree );
+    ON_DEBUG( StringDump( tree ); )
 
     if( FindSameString( tree, to_find, string_position ) == SAME_STRING_EXISTS )
     {
-        printf(YELLOW "found same string\n" DELETE_COLOR);
+        ON_DEBUG( printf(YELLOW "found same string\n" DELETE_COLOR); )
         return SAME_STRING_EXISTS;
     }
     else if( FindEmptyString( tree, string_position ) == FOUND_EMPTY_STRING ) 
     {   
 
-        printf(YELLOW "found empty string\n" DELETE_COLOR);
+        ON_DEBUG( printf(YELLOW "found empty string\n" DELETE_COLOR); )
         return FOUND_EMPTY_STRING;
     } 
     else 
     {
-        printf(YELLOW "not found empty string\n" DELETE_COLOR);
+        ON_DEBUG( printf(YELLOW "not found empty string\n" DELETE_COLOR); )
         return NOT_FOUND_EMPTY_STRING;
     }
 }
@@ -212,12 +212,12 @@ enum TreeErrors DeleteString( struct Tree* tree, TreeElem string )
 
 void StringDump( struct Tree* tree )
 {
-    printf(YELLOW "======Start of StringDump======\n" DELETE_COLOR);
+    ON_DEBUG( printf(YELLOW "======Start of StringDump======\n" DELETE_COLOR); )
     for(int i = 0; i < 10; i++)
     {
         printf("%s  links: %d\n", tree->strings[i].string, tree->strings[i].links_amount);
     }
-    printf(YELLOW "======End of StringDump======\n" DELETE_COLOR);
+    ON_DEBUG( printf(YELLOW "======End of StringDump======\n" DELETE_COLOR); )
 }
 //-----------------------------------------------------------------------------
 
@@ -343,7 +343,7 @@ enum TreeErrors InsertNode( struct Node_t* left, struct Node_t* right, struct No
         else
         {
             // tree->status = BAD_TREE;
-            printf(YELLOW "Pointers don't connect\n" DELETE_COLOR);
+            ON_DEBUG( printf(YELLOW "Pointers don't connect\n" DELETE_COLOR); )
         }   
     }
     if( (left == nullptr) && (right == nullptr) ) //TODO: этот пункт пока хз
@@ -418,12 +418,9 @@ enum TreeErrors NodeDelete( struct Tree* tree, struct Node_t* node )
             {
                 tmp_parent->left = nullptr;
                 
-                printf(RED "\n1 place \n" DELETE_COLOR);
                 DeleteString( tree, node->data );
 
-                printf(RED "\n2 place \n" DELETE_COLOR);
                 free(node);
-                printf(RED "\n3 place \n" DELETE_COLOR);
             }
             else if( tmp_parent->right == node )
             {
@@ -506,7 +503,7 @@ enum TreeErrors NodeDelete( struct Tree* tree, struct Node_t* node )
 
 enum TreeErrors Find( struct Tree* tree, TreeElem to_find, struct Node_t** answer)
 {
-    printf("need to find: %s\n", to_find);
+    ON_DEBUG( printf("need to find: %s\n", to_find); )
     FindNode(tree->root, to_find, answer);
 
     return GOOD_FIND;

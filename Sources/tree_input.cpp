@@ -1,11 +1,12 @@
 #include "../Headers/tree_input.h"
 #include "../Headers/tree_functions.h"
+#include <mutex>
 // #include <features.h>
 
 //---------------------------------------------------------------------------------------
 enum TreeErrors MakeTreeData( struct File_text* dump, struct File_input* file, struct Tree* tree )
 {
-    printf(RED "====== START MakeTreeData ======\n" DELETE_COLOR);
+    ON_DEBUG( printf(RED "====== START MakeTreeData ======\n" DELETE_COLOR); )
 
     //-------------------FILE WORK-------------------
     char filepath[256] = {};
@@ -40,7 +41,7 @@ enum TreeErrors MakeTreeData( struct File_text* dump, struct File_input* file, s
 
         free( file->buffer );
 
-        printf(RED "====== END MakeTreeData ======\n" DELETE_COLOR);
+        ON_DEBUG( printf(RED "====== END MakeTreeData ======\n" DELETE_COLOR); )
         return GOOD_INPUT;
 
     }
@@ -115,7 +116,7 @@ void NodeFromData( struct File_text* dump, struct Tree* tree, struct Node_t* nod
         //---------------
         if( utility->track_1[0] == '\0') 
         {
-            printf("\n\nEEENNNDDD\n\n");
+            ON_DEBUG( printf("\n\nEEENNNDDD\n\n"); )
             return;
         }
         //---------------
@@ -142,7 +143,7 @@ void NodeFromData( struct File_text* dump, struct Tree* tree, struct Node_t* nod
         {
             node->right = nullptr;
             strtok_r( utility->track_2, utility->delim_3, &utility->track_2 );
-            printf(SINIY "huy: %s\n" DELETE_COLOR, utility->track_2 );
+            ON_DEBUG( printf(SINIY "huy: %s\n" DELETE_COLOR, utility->track_2 ); )
         }
     }
     else 
@@ -159,7 +160,7 @@ void NodeFromData( struct File_text* dump, struct Tree* tree, struct Node_t* nod
 //---------------------------------------------------------------------------------------
 void InputFileNameChange( void )
 {
-    printf(YELLOW "====== Start Changing Names ======\n" DELETE_COLOR);
+    ON_DEBUG( printf(YELLOW "====== Start Changing Names ======\n" DELETE_COLOR); )
     char tmp_name[20] = "tmp.txt";
 
     char command_1[300] = "";
@@ -177,5 +178,5 @@ void InputFileNameChange( void )
     system( command_3 );
     ON_DEBUG( printf(YELLOW "%s\n" DELETE_COLOR, command_3); )
 
-    printf(YELLOW "====== Finished Changing Names ======\n" DELETE_COLOR);
+    ON_DEBUG( printf(YELLOW "====== Finished Changing Names ======\n" DELETE_COLOR); )
 }

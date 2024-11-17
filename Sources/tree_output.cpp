@@ -28,7 +28,7 @@ enum TreeErrors StartOutput( struct File_text* file )
     //============================== GRAPH FILE ====================================
     file->stream = fopen(code_filepath, "w");
     fprintf(file->stream, "digraph G\n{\nlabel=\"%s\";\nlabelloc=\"t\";\nfontsize=30\nfontname=\"%s\";\nfontcolor=\"%s\"\n"
-    "splines=polyline\nrankdir=TB;size=\"200,300\";bgcolor=\"%s\";\n", graph_header, fontname, fontcolor, bgcolor);
+    "\nrankdir=TB;size=\"200,300\";bgcolor=\"%s\";\n", graph_header, fontname, fontcolor, bgcolor); //splines=polyline
     //==============================================================================
 
     
@@ -78,7 +78,7 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
         fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %s} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         left, fillcolor, default_pointer_color, left, left, left, left->parent, left, left->data, left, left->left, left, left->right);
 
-        fprintf(file->stream, "node_%p -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, left, pointer_left_color );    
+        fprintf(file->stream, "node_%p: <left%p> -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, node, left, pointer_left_color );    
         WriteEdge( file, node->left );
     }
 
@@ -87,7 +87,7 @@ void WriteEdge( struct File_text* file, struct Node_t* node )
         fprintf(file->stream, " node_%p [shape=record,style=\"rounded,filled\",fillcolor=\"%s\",color=\"%s\",label=\" { { <curr%p> curr: %p } { <parent%p> parent: %p } | | { <data%p> data: %s} | { { <left%p> L: %p } | { <right%p> R: %p } } } \" ];",
         right, fillcolor, default_pointer_color, right, right, right, right->parent, right, right->data, right, right->left, right, right->right );
 
-        fprintf(file->stream, "node_%p -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, right, pointer_right_color );    
+        fprintf(file->stream, "node_%p: <right%p> -> node_%p [color = \"%s\", arrowsize = 1] ;\n", node, node, right, pointer_right_color );    
         WriteEdge( file, node->right );
     }
 
